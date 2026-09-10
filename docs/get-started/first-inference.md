@@ -28,7 +28,7 @@ The sample files are available in the `examples/` directory of the project repos
 To get started, clone the repository:
 
 ```bash
-git clone https://github.com/your-username/doc-engineering-demo.git
+git clone https://github.com/Emily-doc94/doc-engineering-demo.git
 cd doc-engineering-demo
 ```
 
