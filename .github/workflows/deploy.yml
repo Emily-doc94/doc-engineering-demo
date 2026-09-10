@@ -1,0 +1,64 @@
+# Workflow 的名称，会显示在 GitHub 仓库的 Actions 页面
+name: Deploy MkDocs
+
+# 触发条件
+on:
+  # 当代码推送到 main 分支，且以下路径发生变化时触发
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'                          # 文档源文件
+      - 'mkdocs.yml'                       # MkDocs 配置文件
+      - '.github/workflows/deploy.yml'     # workflow 文件本身
+
+  # 当向 main 分支提交 Pull Request，且以下路径发生变化时触发
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+
+  # 允许在 GitHub Actions 页面手动触发
+  workflow_dispatch:
+
+# 授予 workflow 向仓库写入内容的权限（部署需要推送到 gh-pages 分支）
+permissions:
+  contents: write
+
+# 并发控制：同一时间只保留一个部署任务，新的触发会取消旧的
+concurrency:
+  group: deploy-docs
+  cancel-in-progress: true
+
+# 定义任务
+jobs:
+  build-and-deploy:
+    # 运行环境：最新版 Ubuntu 虚拟机
+    runs-on: ubuntu-latest
+
+    # 具体执行步骤
+    steps:
+      # 1. 拉取仓库代码到虚拟机
+      - uses: actions/checkout@v4
+
+      # 2. 安装 Python 3.11
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3. 安装文档构建所需的依赖
+      - name: Install dependencies
+        run: |
+          pip install mkdocs mkdocs-material
+
+      # 4. PR 时只构建，不部署，用于验证文档能否成功生成
+      - name: Build only (for pull requests)
+        if: github.event_name == 'pull_request'
+        run: mkdocs build
+
+      # 5. 推送到 main 或手动触发时，构建并部署到 GitHub Pages
+      - name: Build and deploy (for main branch and manual trigger)
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: mkdocs gh-deploy --force
