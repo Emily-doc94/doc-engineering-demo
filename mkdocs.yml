@@ -1,0 +1,28 @@
+site_name: ONNX Runtime Developer Docs Demo
+site_description: A hands-on demo of Developer Documentation for ONNX Runtime Python API
+
+theme:
+  name: material
+  language: en
+
+nav:
+  - ONNX Runtime Overview: overview/onnx-runtime-overview.md
+  - Get Started:
+      - Installing ONNX Runtime: get-started/installation.md
+      - Running Your First Inference: get-started/first-inference.md
+  - Core Workflow: core-flow/five-steps.md
+  - Python API:
+      - InferenceSession API Reference: python-api/inference-session.md
+  - How It Works: concepts/architecture.md
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+
+extra_javascript:
+  - https://unpkg.com/mermaid/dist/mermaid.min.js
+
