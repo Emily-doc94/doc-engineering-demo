@@ -13,7 +13,6 @@ nav:
   - Core Workflow: core-flow/five-steps.md
   - Python API:
       - InferenceSession API Reference: python-api/inference-session.md
-  - How It Works: concepts/architecture.md
 
 markdown_extensions:
   - pymdownx.superfences:

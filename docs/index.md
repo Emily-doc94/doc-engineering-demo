@@ -2,13 +2,13 @@
 
 This guide helps Python developers integrate ONNX Runtime into machine learning inference applications.
 
-It covers ONNX Runtime concepts, Python API usage, inference workflows, and runtime architecture.
+It covers ONNX Runtime concepts, inference workflows and Python API usage.
 
 ---
 
 ## Overview
 
-Learn the relationship between ONNX models and ONNX Runtime.
+Learn what ONNX Runtime is, how it works with ONNX models, and how Python applications use it for inference.
 
 - [ONNX Runtime Overview](overview/onnx-runtime-overview.md)
 
@@ -38,9 +38,3 @@ Learn how to use the ONNX Runtime Python API to create inference applications.
 - [InferenceSession API Reference](python-api/inference-session.md)
 
 ---
-
-## How It Works
-
-Understand how the Python API interacts with the ONNX Runtime execution environment.
-
-- [Understanding ONNX Runtime Architecture](concepts/architecture.md)

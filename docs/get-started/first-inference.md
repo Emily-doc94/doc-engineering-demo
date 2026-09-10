@@ -23,7 +23,7 @@ The example uses the following files:
 | `mnist-8.onnx` | ONNX model for handwritten digit recognition |
 | `digit.png` | Input image used by the example |
 
-The sample files are available in the `examples/` directory of the project repository.
+The sample files are available in the `Examples/` directory of the project repository.
 
 To get started, clone the repository:
 
